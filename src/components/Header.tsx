@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { Routes } from "@/helpers/routes";
 
 type Props = {
  image: string;
@@ -10,7 +11,7 @@ const Header = ({ image }: Props) => {
   <>
    <header>
     <h1>
-     <Link href="/">
+     <Link href={Routes.home}>
       <a>
        <Image src={image} alt="logo" width="120" height="30" />
       </a>
@@ -60,6 +61,7 @@ const Header = ({ image }: Props) => {
      text-align: center;
      bottom: 0;
      right: 0;
+     padding-left: 0.2em;
      font-size: 1rem;
      color: #fff;
     }
