@@ -1,12 +1,13 @@
 import type { NextPage, GetServerSideProps } from "next";
 import Head from "next/head";
 import { Product } from "@/helpers/types";
+import Header from "@/components/Header";
 
-//get data from api
 type Props = {
  products: Array<Product>;
 };
 
+//get data from api
 export const getServerSideProps: GetServerSideProps = async (context) => {
  try {
   const productsRequest = await fetch(`${process.env.API_URL}/api/products`);
@@ -40,16 +41,17 @@ const Home: NextPage<Props> = ({ products }) => {
      rel="stylesheet"
     />
    </Head>
-   <h1> home</h1>
+   <Header image="/logo-m3.png" />
    <style global jsx>{`
-    root {
+    :root {
      --primary-color: rgba(0, 192, 238, 1);
      --secondary-color: rgba(0, 0, 0, 1);
      --grey-color: rgba(102, 102, 102, 1);
      --light-grey-color: rgba(0, 0, 0, 0, 5);
      font-family: "Open Sans", sans-serif;
      font-size: 10px;
-     font-weight: 300;
+     font-style: normal;
+     font-weight: normal;
     }
    `}</style>
   </div>

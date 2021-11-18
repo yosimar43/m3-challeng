@@ -34,4 +34,4 @@ const productsSchema = new Schema({
  },
 });
 
-export default models.Task || model("Products", productsSchema);
+export default models.products || model("products", productsSchema);
