@@ -13,9 +13,7 @@ type Props = {
 //get data from api
 export const getServerSideProps: GetServerSideProps = async (context) => {
  try {
-  const productsRequest = await fetch(
-   `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/products`
-  );
+  const productsRequest = await fetch(`${process.env.API_URL}/products`);
   const products = await productsRequest.json();
   return {
    props: { products },

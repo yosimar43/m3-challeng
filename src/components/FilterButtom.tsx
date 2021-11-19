@@ -9,7 +9,7 @@ type Props = {
 
 const FilterButtom = ({ options, title, filter }: Props) => {
  const { filterProducts } = useProductsState();
- const [selected, setSelected] = useState<string>("X");
+ const [selected, setSelected] = useState<string>("-");
  useEffect(() => {
   filterProducts(filter(selected));
  }, [selected]);
