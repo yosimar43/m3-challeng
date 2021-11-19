@@ -6,8 +6,7 @@ type Props = {
 };
 
 const productCard = ({ product }: Props) => {
- const { name, price, image } = product;
- console.log(product);
+ const { name, price, image, parcelamento } = product;
 
  return (
   <div className="product-card">
@@ -17,6 +16,9 @@ const productCard = ({ product }: Props) => {
    <div className="product-details">
     <h3 className="product-details_name">{name}</h3>
     <p className="product-detail_price">R$ {price}</p>
+    <p className="product-detail_parcelamento">
+     ate {parcelamento[0]}x de R${parcelamento[1]}
+    </p>
    </div>
    <button className="product-shop">Comprar</button>
 
@@ -49,7 +51,7 @@ const productCard = ({ product }: Props) => {
      font-size: 1.3rem;
     }
     .product-shop {
-     background-color: var(--primary-color);
+     background-color: var(--secondary-color);
      display: block;
      color: #fff;
      padding: 0.5rem 1rem;

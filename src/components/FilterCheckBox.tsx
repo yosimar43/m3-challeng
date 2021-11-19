@@ -1,13 +1,25 @@
-import { useState } from "react";
-type Props = { options: string[]; title?: string };
+import { useProductsState } from "@context/products/ProductsProvider";
+import { useEffect, useState } from "react";
+type Props = {
+ options: string[];
+ title?: string;
+ filterF: (...option: any) => void;
+};
 
-const FilterCheckBox = ({ options, title }: Props) => {
+const FilterCheckBox = ({ options, title, filterF }: Props) => {
+ const { filterProducts } = useProductsState();
  const [selected, setSelected] = useState<string[]>([]);
+
+ useEffect(() => {
+  filterProducts(filterF(selected));
+ }, [selected]);
 
  const handleChange = (event: any) => {
   const { value, checked } = event.target;
+
   if (checked) {
    setSelected((prev) => [...prev, value]);
+   return;
   }
   setSelected((prev) => prev.filter((item) => item !== value));
  };
@@ -16,7 +28,6 @@ const FilterCheckBox = ({ options, title }: Props) => {
   <>
    <form onSubmit={(event: any) => event.preventDefault()}>
     {title && <h3>{title}</h3>}
-
     {options.map((option: string, index: number) => {
      return (
       <label key={index} id={option}>
@@ -33,8 +44,11 @@ const FilterCheckBox = ({ options, title }: Props) => {
     })}
    </form>
    <style jsx>{`
+    form {
+     margin: 2rem 0px;
+    }
     h3 {
-     margin-bottom: 1rem;
+     margin-bottom: 2rem;
      font-size: 1.5rem;
      text-transform: uppercase;
      text-align: center;

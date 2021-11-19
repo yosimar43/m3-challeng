@@ -16,11 +16,11 @@ const ProductsGrid = ({ products }: Props) => {
    <style jsx>{`
     .products-container {
      min-height: 50vh;
-     padding: 1rem 0.5rem;
+     padding: 1rem 3rem;
      max-width: 800px;
      display: grid;
      grid-template-columns: repeat(3, minmax(min(100%, 200px), 1fr));
-     grid-gap: 1rem;
+     grid-gap: 5rem;
      justify-content: center;
      align-items: center;
     }

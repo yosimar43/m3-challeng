@@ -2,6 +2,9 @@ import type { NextPage, GetServerSideProps } from "next";
 import Head from "next/head";
 import { Product } from "@/helpers/types";
 import Header from "@/components/Header";
+import ProductsContainer from "@/components/ProductsContainer";
+import { useEffect } from "react";
+import { useProductsState } from "src/context/products/ProductsProvider";
 
 type Props = {
  products: Array<Product>;
@@ -23,7 +26,12 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 };
 
 const Home: NextPage<Props> = ({ products }) => {
- console.log(products);
+ const { getProducts } = useProductsState();
+
+ useEffect(() => {
+  getProducts(products);
+ }, []);
+
  return (
   <div>
    <Head>
@@ -42,12 +50,19 @@ const Home: NextPage<Props> = ({ products }) => {
     />
    </Head>
    <Header image="/logo-m3.png" />
+
+   <main>
+    <ProductsContainer />
+   </main>
+
    <style global jsx>{`
     :root {
      --primary-color: rgba(0, 192, 238, 1);
      --secondary-color: rgba(0, 0, 0, 1);
      --grey-color: rgba(102, 102, 102, 1);
-     --light-grey-color: rgba(0, 0, 0, 0, 5);
+     --light-grey-color: rgba(0, 0, 0, 0.5);
+    }
+    html {
      font-family: "Open Sans", sans-serif;
      font-size: 10px;
      font-style: normal;
